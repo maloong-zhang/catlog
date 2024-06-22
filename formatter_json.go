@@ -20,25 +20,15 @@ func (f *JsonFormatter) Format(e *Entry) error {
 			e.Map["file"] = e.File + ":" + strconv.Itoa(e.Line)
 			e.Map["func"] = e.Func
 		}
-
-		switch e.Format {
-		case FmtEmptySeparate:
-			e.Map["message"] = fmt.Sprint(e.Args...)
-		default:
-			e.Map["message"] = fmt.Sprintf(e.Format, e.Args...)
-		}
-		return jsoniter.NewEncoder(e.Buffer).Encode(e.Map)
 	}
 
 	switch e.Format {
 	case FmtEmptySeparate:
-		for _, arg := range e.Args {
-			if err := jsoniter.NewEncoder(e.Buffer).Encode(arg); err != nil {
-				return err
-			}
-		}
+		e.Map["message"] = fmt.Sprint(e.Args...)
+
 	default:
-		e.Buffer.WriteString(fmt.Sprintf(e.Format, e.Args...))
+		e.Map["message"] = fmt.Sprintf(e.Format, e.Args...)
+
 	}
-	return nil
+	return jsoniter.NewEncoder(e.Buffer).Encode(e.Map)
 }
