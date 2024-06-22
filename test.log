@@ -1,4 +1,0 @@
-{"message":"custom log with json formatter","level":"INFO","time":"2024-06-22T17:28:54+04:00","file":"/Users/andying/goplace/catlog/example/main.go:26","func":"main.main"}
-{"level":"INFO","time":"2024-06-22T17:29:14+04:00","file":"/Users/andying/goplace/catlog/example/main.go:26","func":"main.main","message":"custom log with json formatter"}
-{"time":"2024-06-22T17:33:41+04:00","file":"/Users/andying/goplace/catlog/example/main.go:26","func":"main.main","message":"custom log with json formatter","level":"INFO"}
-{"time":"2024-06-22T17:34:18+04:00","file":"/Users/andying/goplace/catlog/example/main.go:26","func":"main.main","message":"custom log with json formatter","level":"INFO"}
