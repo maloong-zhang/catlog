@@ -57,7 +57,7 @@ func (l *Level) unmarshalText(text []byte) bool {
 	return true
 }
 
-// UnmarshalTest unmarshals text to a level.
+// UnmarshalText unmarshals text to a level.
 func (l *Level) UnmarshalText(text []byte) error {
 	if l == nil {
 		return errUnmarshalNilLevel
