@@ -1,9 +1,6 @@
 package catlog
 
 import (
-	"bytes"
-	"errors"
-	"fmt"
 	"io"
 	"os"
 )
@@ -33,39 +30,6 @@ var LevelNameMapping = map[Level]string{
 	ErrorLevel: "ERROR",
 	PanicLevel: "PANIC",
 	FatalLevel: "FATAL",
-}
-
-var errUnmarshalNilLevel = errors.New("can't unmarshal a nil *Level")
-
-func (l *Level) unmarshalText(text []byte) bool {
-	switch string(text) {
-	case "debug", "DEBUG":
-		*l = DebugLevel
-	case "info", "INFO", "": // make the zero value useful
-		*l = InfoLevel
-	case "warn", "WARN":
-		*l = WarnLevel
-	case "error", "ERROR":
-		*l = ErrorLevel
-	case "panic", "PANIC":
-		*l = PanicLevel
-	case "fatal", "FATAL":
-		*l = FatalLevel
-	default:
-		return false
-	}
-	return true
-}
-
-// UnmarshalText unmarshals text to a level.
-func (l *Level) UnmarshalText(text []byte) error {
-	if l == nil {
-		return errUnmarshalNilLevel
-	}
-	if !l.unmarshalText(text) && !l.unmarshalText(bytes.ToLower(text)) {
-		return fmt.Errorf("unrecognized level: %q", text)
-	}
-	return nil
 }
 
 // log options
