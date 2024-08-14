@@ -18,7 +18,7 @@ func main() {
 	// output to file
 	fd, err := os.OpenFile("test.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		log.Fatalln("create file text.log failed")
+		log.Fatalln("create file test.log failed")
 	}
 	defer fd.Close()
 
