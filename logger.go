@@ -2,10 +2,8 @@ package catlog
 
 import (
 	"fmt"
-	"io"
 	"os"
 	"sync"
-	"unsafe"
 )
 
 type logger struct {
@@ -37,19 +35,6 @@ func (l *logger) SetOptions(opts ...Option) {
 	for _, opt := range opts {
 		opt(l.opt)
 	}
-}
-
-func Writer() io.Writer {
-	return std
-}
-
-func (l *logger) Writer() io.Writer {
-	return l
-}
-
-func (l *logger) Write(data []byte) (int, error) {
-	l.entry().write(l.opt.stdLevel, FmtEmptySeparate, *(*string)(unsafe.Pointer(&data)))
-	return 0, nil
 }
 
 func (l *logger) entry() *Entry {
